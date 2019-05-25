@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_final/allpage/database.dart';
+import 'package:flutter_final/allpage/profileSetup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_final/utils/quote.dart';
 
@@ -17,11 +18,6 @@ class HomeScreen extends State<HomeState>{
 
   UserProvider userProvider = UserProvider();
 
-  // @override
-  // initState(){
-  //   super.initState();
-  //   this._getUser();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +52,10 @@ class HomeScreen extends State<HomeState>{
               child: RaisedButton(
                 child: Text("Profile Setup"),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/setup');
+                 Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfileSetupScreen()));
                 },
               )
             ),
@@ -64,9 +63,6 @@ class HomeScreen extends State<HomeState>{
               width: double.infinity,
               child: RaisedButton(
                 child: Text("My Friend"),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/friend');
-                },
               )
             ),
             SizedBox(
@@ -91,16 +87,7 @@ class HomeScreen extends State<HomeState>{
     Navigator.of(context).pushReplacementNamed('/');
   }
 
-  // void _getName() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     this.name = prefs.getString('name');
-  //   });
-  // }
 
-  // void _getQuote(int userId) async {
-  //   this.quote = await QuoteUtils.readQuote(userId);
-  // }
 
   void _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
